@@ -1,0 +1,125 @@
+/* =====================
+   GLOBAL STYLES
+===================== */
+*{ margin:0; padding:0; box-sizing:border-box; font-family:Arial, Helvetica, sans-serif; }
+html, body{ min-height:100%; }
+body{ background:#f4f4f4; color:#333; }
+
+/* HEADINGS */
+h1{ color:#790000; margin-bottom:8px; font-size:26px; }
+p{ line-height:1.6; }
+
+/* =====================
+   LOGIN PAGE
+===================== */
+.auth-wrapper{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.login-card{
+    background:#ffffff;
+    width:100%;
+    max-width:400px;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 3px 10px rgba(0,0,0,.08);
+}
+
+.auth-brand{
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    color:#777;
+    margin-bottom:8px;
+    font-weight:bold;
+}
+
+.auth-subtitle{
+    color:#666;
+    font-size:14px;
+    margin-bottom:22px;
+}
+
+/* =====================
+   ALERT BOX
+===================== */
+.alert-error{
+    background:#fde8e8;
+    color:#9b1c1c;
+    border:1px solid #f8b4b4;
+    padding:12px 14px;
+    border-radius:6px;
+    margin-bottom:20px;
+    font-size:14px;
+    line-height:1.4;
+}
+
+/* =====================
+   FORMS & INPUTS
+===================== */
+.form-group{
+    margin-bottom:20px;
+    display:flex;
+    flex-direction:column;
+}
+
+.form-group label{
+    margin-bottom:8px;
+    font-weight:bold;
+    font-size:14px;
+    color:#444;
+}
+
+.form-group input[type="email"],
+.form-group input[type="password"]{
+    width:100%;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    outline:none;
+    font-size:14px;
+    transition:border-color .2s;
+}
+
+.form-group input:focus{
+    border-color:#790000;
+}
+
+/* =====================
+   BUTTONS
+===================== */
+button, .btn{
+    background:#790000;
+    color:#ffffff;
+    border:none;
+    padding:11px 18px;
+    border-radius:6px;
+    cursor:pointer;
+    transition:.2s;
+    text-decoration:none;
+    display:inline-block;
+    font-size:15px;
+    font-weight:bold;
+}
+
+button:hover, .btn:hover{
+    background:#a50000;
+}
+
+.btn-block{
+    width:100%;
+    text-align:center;
+}
+
+/* =====================
+   RESPONSIVE DESIGN
+===================== */
+@media (max-width: 480px){
+    .login-card{
+        padding:22px 18px;
+    }
+}

@@ -1,84 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+/**
+ * Add Student View
+ * Form to register a new student account.
+ */
 
-<head>
+// Define page metadata for layout
+$pageTitle = 'Add Student';
+$currentPage = 'students';
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+// Preserved old inputs if validation failed
+$old = $old ?? [];
 
-    <title>Add Student</title>
+// Include shared header and sidebar
+include __DIR__ . '/../partials/header.php';
+include __DIR__ . '/../partials/sidebar.php';
+?>
 
-    <?php foreach (['style', 'header', 'sidebar', 'content', 'footer'] as $css): ?>
-        <link rel="stylesheet" href="../../../css/<?= $css ?>.css">
-    <?php endforeach; ?>
+<!-- Add Student Form Section -->
+<section class="dashboard-section">
+    <h1>Add New Student</h1>
+    
+    <form action="<?php echo htmlspecialchars($basePath); ?>/adminpage/students.php?action=store" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" 
+                   value="<?php echo htmlspecialchars($old['name'] ?? ''); ?>" 
+                   placeholder="Enter student full name" required>
+        </div>
 
-</head>
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" 
+                   value="<?php echo htmlspecialchars($old['email'] ?? ''); ?>" 
+                   placeholder="student@example.com" required>
+        </div>
 
-<body>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Create a secure password" required>
+        </div>
 
-    <?php include '../../../includes/sidebar.php'; ?>
-    <?php include '../../../includes/header.php'; ?>
+        <div class="form-group">
+            <label for="profile_picture">Profile Picture</label>
+            <input type="file" id="profile_picture" name="profile_picture" accept=".jpg,.jpeg,.png,.webp">
+            <span class="form-help">Accepted formats: JPG, PNG, WEBP (Max: 2MB)</span>
+        </div>
 
-    <main class="content">
+        <div class="form-actions">
+            <button type="submit" class="btn">Save Student</button>
+            <a href="<?php echo htmlspecialchars($basePath); ?>/adminpage/students.php" class="btn btn-secondary">
+                Cancel
+            </a>
+        </div>
+    </form>
+</section>
 
-        <h1>Add Student</h1>
-
-        <section class="dashboard-section">
-
-            <h2>Student Information</h2>
-
-            <form method="POST"
-                  action="../../../controllers/StudentController.php"
-                  enctype="multipart/form-data">
-
-                <div>
-                    <label for="name">Full Name</label>
-                    <br>
-                    <input type="text" id="name" name="name" required>
-                </div>
-
-                <br>
-
-                <div>
-                    <label for="email">Email</label>
-                    <br>
-                    <input type="email" id="email" name="email" required>
-                </div>
-
-                <br>
-
-                <div>
-                    <label for="course">Course</label>
-                    <br>
-                    <input type="text" id="course" name="course" required>
-                </div>
-
-                <br>
-
-                <div>
-                    <label for="image">Student Image</label>
-                    <br>
-                    <input type="file"
-                           id="image"
-                           name="image"
-                           accept="image/*"
-                           required>
-                </div>
-
-                <br>
-
-                <button type="submit">Add Student</button>
-
-                <a href="list.php">Cancel</a>
-
-            </form>
-
-        </section>
-
-    </main>
-
-    <?php include '../../../includes/footer.php'; ?>
-
-</body>
-
-</html>
+<?php
+// Include shared footer
+include __DIR__ . '/../partials/footer.php';
+?>

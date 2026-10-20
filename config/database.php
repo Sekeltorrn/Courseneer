@@ -1,9 +1,15 @@
 <?php
+/**
+ * Database Configuration Settings
+ *
+ * Returns an associative array with database connection parameters
+ * used by PDO in BaseModel.
+ */
 
-$conn = new mysqli("localhost", "root", "", "courseneer");
-
-if ($conn->connect_error) {
-    die("Database connection failed: " . $conn->connect_error);
-}
-
-?>
+return [
+    'host'     => 'localhost',
+    'dbname'   => 'courseneer',
+    'user'     => 'root',
+    'password' => '',
+    'charset'  => 'utf8mb4',
+];

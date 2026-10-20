@@ -1,92 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+/**
+ * Add Instructor View
+ * Form to register a new instructor.
+ */
 
-<head>
+// Define page metadata for layout
+$pageTitle = 'Add Instructor';
+$currentPage = 'instructors';
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+// Preserved old inputs if validation failed
+$old = $old ?? [];
 
-    <title>Add Instructor</title>
+// Include shared header and sidebar
+include __DIR__ . '/../partials/header.php';
+include __DIR__ . '/../partials/sidebar.php';
+?>
 
-    <?php foreach (['style', 'header', 'sidebar', 'content', 'footer'] as $css): ?>
-        <link rel="stylesheet" href="../../../css/<?= $css ?>.css">
-    <?php endforeach; ?>
+<!-- Add Instructor Form Section -->
+<section class="dashboard-section">
+    <h1>Add New Instructor</h1>
 
-</head>
+    <form action="<?php echo htmlspecialchars($basePath); ?>/adminpage/instructors.php?action=store" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" 
+                   value="<?php echo htmlspecialchars($old['name'] ?? ''); ?>" 
+                   placeholder="e.g. Dr. Jane Doe" required>
+        </div>
 
-<body>
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" 
+                   value="<?php echo htmlspecialchars($old['email'] ?? ''); ?>" 
+                   placeholder="instructor@courseneer.edu" required>
+        </div>
 
-    <?php include '../../../includes/sidebar.php'; ?>
-    <?php include '../../../includes/header.php'; ?>
+        <div class="form-group">
+            <label for="bio">Short Bio</label>
+            <textarea id="bio" name="bio" placeholder="Brief biography, educational background, and areas of expertise..." required><?php echo htmlspecialchars($old['bio'] ?? ''); ?></textarea>
+        </div>
 
-    <main class="content">
+        <div class="form-group">
+            <label for="photo">Photo</label>
+            <input type="file" id="photo" name="photo" accept=".jpg,.jpeg,.png,.webp" required>
+            <span class="form-help">Upload a clear portrait. Accepted formats: JPG, PNG, WEBP (Max: 2MB).</span>
+        </div>
 
-        <h1>Add Instructor</h1>
+        <div class="form-actions">
+            <button type="submit" class="btn">Save Instructor</button>
+            <a href="<?php echo htmlspecialchars($basePath); ?>/adminpage/instructors.php" class="btn btn-secondary">
+                Cancel
+            </a>
+        </div>
+    </form>
+</section>
 
-        <section class="dashboard-section">
-
-            <h2>Instructor Information</h2>
-
-            <form method="POST"
-                  action="../../../controllers/InstructorController.php"
-                  enctype="multipart/form-data">
-
-                <div>
-                    <label for="name">Full Name</label>
-                    <br>
-                    <input type="text" id="name" name="name" required>
-                </div>
-
-                <br>
-
-                <div>
-                    <label for="email">Email</label>
-                    <br>
-                    <input type="email" id="email" name="email" required>
-                </div>
-
-                <br>
-
-                <div>
-                    <label for="specialization">Specialization</label>
-                    <br>
-                    <input type="text" id="specialization" name="specialization" required>
-                </div>
-
-                <br>
-
-                <div>
-                    <label for="courses">Courses</label>
-                    <br>
-                    <input type="text" id="courses" name="courses" required>
-                </div>
-
-                <br>
-
-                <div>
-                    <label for="image">Instructor Image</label>
-                    <br>
-                    <input type="file"
-                           id="image"
-                           name="image"
-                           accept="image/*"
-                           required>
-                </div>
-
-                <br>
-
-                <button type="submit">Add Instructor</button>
-
-                <a href="list.php">Cancel</a>
-
-            </form>
-
-        </section>
-
-    </main>
-
-    <?php include '../../../includes/footer.php'; ?>
-
-</body>
-
-</html>
+<?php
+// Include shared footer
+include __DIR__ . '/../partials/footer.php';
+?>
